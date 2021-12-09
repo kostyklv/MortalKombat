@@ -18,18 +18,41 @@ const player2 = {
     }
 };
 
-const $box = document.getElementById('box');
-console.log($box.innerText);
-function createPlayer() {
+
+function createPlayer(type, player) {
+    const $player1 = document.createElement('div');
+    $player1.classList.add('player1');
+
+    const $progressbar = document.createElement('div');
+    $progressbar.classList.add('progressbar');
+    $player1.appendChild($progressbar);
+
+    const $life = document.createElement('div');
+    $life.classList.add('life');
+   // $life.style.width=50;
+    $progressbar.appendChild($life);
+
+    const $name = document.createElement('div');
+    $name.classList.add('name');
+    $name.innerText=player.name;
+    $progressbar.appendChild($name);
+
+    const $character = document.createElement('div');
+    $character.classList.add('character');
+    
+    const $img = document.createElement('img');
+    $img.src = player.image;
+    $character.appendChild($img);
 
 
-};
+    $player1.appendChild($character);
 
-player1.attack(player1.name);
 
-const $player1 = document.createElement('div');
-$player1.innerText='Scorpion';
-$player1.classList.add('player1');
 
-const $root=document.querySelector('div');
-$root.appendChild($player1)
+    const $root=document.querySelector('.arenas');
+    $root.appendChild($player1);
+} 
+
+
+createPlayer('player1',player1);
+createPlayer('player2',player2);

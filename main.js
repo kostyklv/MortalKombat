@@ -1,47 +1,20 @@
-<<<<<<< Updated upstream
-const $arenas=document.querySelector('.arenas');
-const $randomButton = document.querySelector('.control .button');
-
-
-function changeHP (damage) {
-    this.hp-=damage;
-    
-    
-=======
 const $arenas = document.querySelector('.arenas');
-//const $randomButton = document.querySelector('.control .button');
 const $chat = document.querySelector('.chat');
 
 function changeHP(damage) {
     this.hp -= damage;
 
->>>>>>> Stashed changes
     if (this.hp < 0) {
         this.hp = 0;
     }
-    //$playerLife.style.width=player.hp+'%';
     console.log(this.name +' ' + this.hp);
 };
 
-<<<<<<< Updated upstream
-function elHP () {
-    console.log(this.name + ' life is ' + this.hp)
-    return document.querySelector('.player'+ this.player +' .life');
-};
-
-function renderHP () {
-    console.log(this.name + ' render life is ' + this.hp)
-    this.elHP().style.width=this.hp+'%';
-};
-
-=======
 function elHP() {
-    //console.log(this.name + ' life is ' + this.hp)
     return document.querySelector('.player' + this.player + ' .life');
 };
 
 function renderHP() {
-    //console.log(this.name + ' render life is ' + this.hp)
     this.elHP().style.width = this.hp + '%';
 };
 
@@ -97,21 +70,9 @@ function attack() {
     console.log(this.name + 'Fight...');
 }
 
->>>>>>> Stashed changes
 const player1 = {
     name: 'Scorpion',
     hp: 100,
-<<<<<<< Updated upstream
-    image:'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
-    weapon:['sable','axe','sword'],
-    player:1,
-    attack: function () {
-        console.log(this.name + 'Fight...');
-    },
-    changeHP: changeHP,
-    elHP: elHP,
-    renderHP: renderHP
-=======
     image: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
     weapon: ['sable', 'axe', 'sword'],
     player: 1,
@@ -119,23 +80,11 @@ const player1 = {
     changeHP,
     elHP,
     renderHP
->>>>>>> Stashed changes
 };
 
 const player2 = {
     name: 'Sonya',
     hp: 90,
-<<<<<<< Updated upstream
-    image:'http://reactmarathon-api.herokuapp.com/assets/sonya.gif',
-    weapon:['sable','axe','sword'],
-    player:2,
-    attack: function () {
-        console.log(this.name + 'Fight...');
-    },
-    changeHP: changeHP,
-    elHP: elHP,
-    renderHP: renderHP
-=======
     image: 'http://reactmarathon-api.herokuapp.com/assets/sonya.gif',
     weapon: ['sable', 'axe', 'sword'],
     player: 2,
@@ -143,7 +92,6 @@ const player2 = {
     changeHP,
     elHP,
     renderHP
->>>>>>> Stashed changes
 };
 
 function createElement(tag, className) {
@@ -154,25 +102,12 @@ function createElement(tag, className) {
     return $tag;
 }
 
-
-
-
 function createPlayer(playerObj) {
-<<<<<<< Updated upstream
-
-
-    const $hero = createElement('div','player'+playerObj.player);
-    const $progressbar = createElement('div','progressbar');
-    const $life = createElement('div','life');
-    const $name = createElement('div','name');
-    const $character = createElement('div','character');
-=======
     const $hero = createElement('div', 'player' + playerObj.player);
     const $progressbar = createElement('div', 'progressbar');
     const $life = createElement('div', 'life');
     const $name = createElement('div', 'name');
     const $character = createElement('div', 'character');
->>>>>>> Stashed changes
     const $img = createElement('img');
 
     $life.style.width = playerObj.hp + '%';
@@ -190,28 +125,8 @@ function createPlayer(playerObj) {
     return $hero;
 }
 
-<<<<<<< Updated upstream
-function randomDamage (maxDamage)
-{
-    return Math.ceil(Math.random()*maxDamage);
-    
-}
-
-
-function changeHP1 (player, damage) {
-    const $playerLife=document.querySelector('.player'+ player.player +' .life');
-    player.hp-=damage;
-    
-    
-    if (player.hp < 0) {
-        player.hp=0;
-    }
-    $playerLife.style.width=player.hp+'%';
-    console.log(player.name +' ' + player.hp);
-=======
 function getRandom(num) {
     return Math.ceil(Math.random() * num);
->>>>>>> Stashed changes
 }
 
 function playerWins(name) {
@@ -225,16 +140,6 @@ function playerWins(name) {
     return $winTitle;
 }
 
-<<<<<<< Updated upstream
-function createReloadButtion () {
-    const $reloadButton = createElement('div', 'reloadWrap');
-    const $button = createElement('button', 'button');
-    $button.innerText='Restart';
-    $reloadButton.appendChild($button);
-    $button.disabled=true;
-    
-    return $reloadButton;
-=======
 function createReloadButtion() {
     const $reloadButtonDiv = createElement('div', 'reloadWrap');
     const $reloadButton = createElement('button', 'button');
@@ -246,55 +151,12 @@ function createReloadButtion() {
 
     $reloadButtonDiv.appendChild($reloadButton);
     $arenas.appendChild($reloadButtonDiv);
->>>>>>> Stashed changes
 }
 
-
-const $reloadButton =createReloadButtion();
-$arenas.appendChild($reloadButton);
-$restartButton = document.querySelector('.reloadWrap .button');
-
-<<<<<<< Updated upstream
-$reloadButton.addEventListener('click', function(){
-    window.location.reload();
- 
-})
-
-$randomButton.addEventListener('click', function(){
-    console.log('###:Click random buttion');
-    player1.changeHP(randomDamage(20));
-    player1.renderHP();
-    player2.changeHP(randomDamage(20));
-    player2.renderHP();
-   
-    if (player1.hp ===0 || player2.hp===0) {
-        $randomButton.disabled=true;
-        $restartButton.disabled=false;
-    }
-
-    if (player1.hp ===0 && player1.hp<player2.hp) {
-        $arenas.appendChild(playerWins(player2.name));
-    } else if (player2.hp ===0 && player2.hp<player1.hp) {
-        $arenas.appendChild(playerWins(player1.name));
-    } else if (player1.hp ===0 && player2.hp ===0) {
-        $arenas.appendChild(playerWins());
-    } 
-
-})
-
-
-
-
-
-=======
->>>>>>> Stashed changes
 $arenas.appendChild(createPlayer(player1));
 $arenas.appendChild(createPlayer(player2));
-generateLogsStart ('start',player1,player2);
+generateLogs ('start',player1,player2);
 
-
-<<<<<<< Updated upstream
-=======
 function enemyAttack() {
     const hit = ATTACK[getRandom(3) - 1];
     const defence = ATTACK[getRandom(3) - 1];
@@ -319,75 +181,13 @@ function playerAttack() {
         if (item.checked && item.name === 'defence') {
             attack.defence = item.value;
         }
-
         item.checked = false;
-
     }
 
     return attack;
 }
 
 const $submitButton = document.querySelector('.buttonWrap .button');
-
-
-function showResult(){
-    if (player1.hp === 0 || player2.hp === 0) {
-        $submitButton.disabled = true;
-        createReloadButtion();
-    }
-
-
-    if (player1.hp === 0 && player1.hp < player2.hp) {
-        $arenas.appendChild(playerWins(player2.name));
-        generateLogsWin ('end', player2, player1);
-    } else if (player2.hp === 0 && player2.hp < player1.hp) {
-        $arenas.appendChild(playerWins(player1.name));
-        generateLogsWin ('end', player1, player2);
-    } else if (player1.hp === 0 && player2.hp === 0) {
-        $arenas.appendChild(playerWins());
-        generateLogsDraw ();
-    }
-}
-/**
- * Start message in chat window
- * @param {string} type 
- * @param {player1} player1 
- * @param {player2} player2 
- */
-function generateLogsStart (type, player1, player2){
-    const timestamp=new Date().toLocaleTimeString();
-    const text =logs[type].replace('[player1]',`<u>${player1.name}</u>`).replace('[player2]',player2.name).replace('[time]',timestamp);
-    console.log(text);
-    const el=`<p>${text}</p>`;
-    $chat.insertAdjacentHTML('afterbegin',el);
-}
-
-/**
- * Final message about DRAW in chat window
- */
-function generateLogsDraw (){
-    const timestamp=new Date().toLocaleTimeString();
-    const text =logs['draw'];
-    console.log(text);
-    const el=`<p>${timestamp}: ${text}</p>`;
-    $chat.insertAdjacentHTML('afterbegin',el);
-}
-
-function generateLogsWin (type, winner, looser){
-    const timestamp=new Date().toLocaleTimeString();
-    const text =logs[type][getRandom(logs[type].length-1)].replace('[playerWins]',winner.name).replace('[playerLose]',looser.name);
-    console.log(text);
-    const el=`<p>${timestamp}: ${text}</p>`;
-    $chat.insertAdjacentHTML('afterbegin',el);
-}
-
-function generateLogs (type, player1, player2){
-    const timestamp=new Date().toLocaleTimeString();
-    const text =logs[type][getRandom(logs[type].length-1)].replace('[playerKick]',player1.name).replace('[playerDefence]',player2.name);
-    console.log(text);
-    const el=`<p>${timestamp}: ${text}</p>`;
-    $chat.insertAdjacentHTML('afterbegin',el);
-}
 
 $formFight.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -403,6 +203,55 @@ $formFight.addEventListener('submit', function (e) {
     
 })
 
+function showResult(){
+    if (player1.hp === 0 || player2.hp === 0) {
+        $submitButton.disabled = true;
+        createReloadButtion();
+    }
+
+
+    if (player1.hp === 0 && player1.hp < player2.hp) {
+        $arenas.appendChild(playerWins(player2.name));
+        generateLogs ('end', player2, player1, player2);
+    } else if (player2.hp === 0 && player2.hp < player1.hp) {
+        $arenas.appendChild(playerWins(player1.name));
+        generateLogs ('end', player1, player2, player1);
+    } else if (player1.hp === 0 && player2.hp === 0) {
+        $arenas.appendChild(playerWins());
+        generateLogs('draw');
+    }
+}
+
+function generateLogs (type, player1, player2, winner){
+    let text;
+    const timestamp=new Date().toLocaleTimeString();
+    switch (type) {
+        case 'start':    
+            text =logs[type].replace('[player1]',`<u>${player1.name}</u>`).replace('[player2]',player2.name).replace('[time]',timestamp);
+            break;
+        case 'end':
+            let looser;
+            switch (winner) {
+                case player1: 
+                    looser = player2;
+                    break;
+                default :
+                    looser = player1;
+            }
+            text =logs[type][getRandom(logs[type].length-1)].replace('[playerWins]',winner.name).replace('[playerLose]',looser.name);
+            break;
+        case 'draw':
+            text =logs['draw'];
+            break;
+        default: 
+            text =logs[type][getRandom(logs[type].length-1)].replace('[playerKick]',player1.name).replace('[playerDefence]',player2.name);
+    }
+    console.log(text);
+    const el=`<p>${timestamp}: ${text}</p>`;
+    $chat.insertAdjacentHTML('afterbegin',el);
+}
+
+
 function checkDamage(player, enemyPlayer, enemy, attack) {
     if (attack.defence !== enemy.hit) {
         player.changeHP(enemy.value);
@@ -416,5 +265,4 @@ function checkDamage(player, enemyPlayer, enemy, attack) {
         console.log(enemyPlayer.name + ' ne probil');
     }
 }
->>>>>>> Stashed changes
 

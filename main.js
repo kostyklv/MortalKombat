@@ -1,8 +1,8 @@
-import { plyaer } from './player.js';
+import { plyayer } from './player.js';
 
 import getRandom from './utils.js';
 
-console.log(plyaer);
+console.log(plyayer);
 
 
 const $arenas = document.querySelector('.arenas');
@@ -137,9 +137,9 @@ function createPlayer(playerObj) {
     return $hero;
 }
 
-function getRandom(num) {
-    return Math.ceil(Math.random() * num);
-}
+// function getRandom(num) {
+//     return Math.ceil(Math.random() * num);
+// }
 
 function playerWins(name) {
     const $winTitle = createElement('div', 'loseTitle');

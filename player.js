@@ -1,4 +1,4 @@
-export const player {
+export const plyayer = {
     player: 1,
     name: 'Scorpion',
     hp: 100,

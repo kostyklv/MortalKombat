@@ -48,5 +48,58 @@ const HIT = {
 const ATTACK = ['head', 'body', 'foot'];
 
 
+function createElement(tag, className) {
+    const $tag = document.createElement(tag);
+    if (className) {
+        $tag.classList.add(className);
+    }
+    return $tag;
+}
 
-export { getRandom, logs, HIT, ATTACK};
+function createPlayer(playerObj) {
+    const $hero = createElement('div','player'+playerObj.player);
+    const $progressbar = createElement('div','progressbar');
+    const $life = createElement('div','life');
+    const $name = createElement('div','name');
+    const $character = createElement('div','character');
+    const $img = createElement('img');
+ 
+    $life.style.width=playerObj.hp+'%';
+    $name.innerText=playerObj.name;
+    $img.src = playerObj.image;
+ 
+    $progressbar.appendChild($life);
+    $progressbar.appendChild($name);
+  
+    $character.appendChild($img);
+
+    $hero.appendChild($progressbar);
+    $hero.appendChild($character);
+
+    return $hero;
+} 
+
+
+function generateLogs (type, player1, player2){
+    let text;
+    const timestamp=new Date().toLocaleTimeString();
+    switch (type) {
+        case 'draw':
+            text =logs['draw'];
+            break;
+        case 'start':
+            text =logs[type].replace('[player1]',`<u>${player1.name}</u>`).replace('[player2]',player2.name).replace('[time]',timestamp);
+            break;
+        case 'end':
+            text =logs[type][getRandom(logs[type].length-1)].replace('[playerWins]',winner.name).replace('[playerLose]',looser.name);
+            break;
+        default:
+            text =logs[type][getRandom(logs[type].length-1)].replace('[playerKick]',player1.name).replace('[playerDefence]',player2.name);
+    }
+    console.log(text);
+    const el=`<p>${timestamp}: ${text}</p>`;
+    return el;
+}
+
+
+export { getRandom, logs, HIT, ATTACK, createElement, createPlayer, generateLogs};
